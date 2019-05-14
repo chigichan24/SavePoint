@@ -3,12 +3,18 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/nav_graph"
-  app:startDestination="@id/main"
+  app:startDestination="@id/navigation_main"
   >
   <fragment
-    android:id="@+id/main"
+    android:id="@+id/navigation_main"
     android:name="net.chigita.savepoint.ui.fragment.HomeFragment"
     android:label="@string/label_home"
     tools:layout="@layout/fragment_home"
+    />
+  <fragment
+    android:id="@+id/navigation_register"
+    android:name="net.chigita.savepoint.ui.fragment.RegisterFragment"
+    android:label="@string/label_register"
+    tools:layout="@layout/fragment_register"
     />
 </navigation>

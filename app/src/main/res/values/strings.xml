@@ -3,4 +3,5 @@
 
     <!--navigation-->
     <string name="label_home">home</string>
+    <string name="label_register">register</string>
 </resources>
