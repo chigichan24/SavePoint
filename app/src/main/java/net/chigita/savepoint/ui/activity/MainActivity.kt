@@ -12,13 +12,10 @@ import net.chigita.savepoint.databinding.ActivityMainBinding
 
 class MainActivity : DaggerAppCompatActivity() {
 
-  private val binding by lazy {
-    DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
-  }
+  private lateinit var binding: ActivityMainBinding
 
   override fun onCreate(savedInstanceState: Bundle?) {
-
     super.onCreate(savedInstanceState)
-    binding.textMain.text = "data binding enabled"
+    binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
   }
 }
