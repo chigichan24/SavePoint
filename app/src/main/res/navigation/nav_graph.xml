@@ -10,7 +10,12 @@
     android:name="net.chigita.savepoint.ui.fragment.HomeFragment"
     android:label="@string/label_home"
     tools:layout="@layout/fragment_home"
-    />
+    >
+    <action
+      android:id="@+id/action_main_to_register"
+      app:destination="@+id/navigation_register"
+      />
+  </fragment>
   <fragment
     android:id="@+id/navigation_register"
     android:name="net.chigita.savepoint.ui.fragment.RegisterFragment"
