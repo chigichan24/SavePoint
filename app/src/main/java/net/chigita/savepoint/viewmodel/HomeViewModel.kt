@@ -1,13 +1,21 @@
 package net.chigita.savepoint.viewmodel
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import javax.inject.Inject
 
 /**
  * Created by chigichan24 on 2019-05-15.
  */
 class HomeViewModel @Inject constructor(
-) : ViewModel() {
+    private val app: Application
+) : AndroidViewModel(app) {
   fun clickFab() {
+    Toast.makeText(
+        app.applicationContext,
+        "cliked",
+        Toast.LENGTH_SHORT
+    ).show()
   }
 }
