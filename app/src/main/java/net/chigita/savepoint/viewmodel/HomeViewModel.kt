@@ -14,7 +14,7 @@ class HomeViewModel @Inject constructor(
   fun clickFab() {
     Toast.makeText(
         app.applicationContext,
-        "cliked",
+        "clicked",
         Toast.LENGTH_SHORT
     ).show()
   }
