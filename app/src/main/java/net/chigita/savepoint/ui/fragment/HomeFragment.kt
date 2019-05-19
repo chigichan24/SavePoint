@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import net.chigita.savepoint.R
 import net.chigita.savepoint.databinding.FragmentHomeBinding
 import net.chigita.savepoint.di.Injectable
@@ -41,5 +42,11 @@ class HomeFragment : Fragment(), Injectable {
     homeViewModel = ViewModelProviders.of(this, viewModelFactory)
         .get(HomeViewModel::class.java)
     binding.viewModel = homeViewModel
+    //TODO: refactor
+    binding.fab.setOnClickListener {
+      navigateToRegister()
+    }
   }
+
+  fun navigateToRegister() = findNavController().navigate(R.id.action_main_to_register)
 }
