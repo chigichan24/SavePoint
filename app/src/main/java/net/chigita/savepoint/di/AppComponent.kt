@@ -3,8 +3,7 @@ package net.chigita.savepoint.di
 import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
+import dagger.android.AndroidInjectionModule
 import net.chigita.savepoint.App
 import javax.inject.Singleton
 
@@ -14,12 +13,11 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-  AndroidSupportInjectionModule::class,
-  ActivityModule.MainActivityBuilder::class,
-  ViewModelModule::class,
-  AppModule::class
+  AndroidInjectionModule::class,
+  AppModule::class,
+  MainActivityModule::class
 ])
-interface AppComponent : AndroidInjector<App> {
+interface AppComponent {
   @Component.Builder
   interface Builder {
     @BindsInstance fun application(application: Application): Builder
@@ -27,9 +25,5 @@ interface AppComponent : AndroidInjector<App> {
     fun build(): AppComponent
   }
 
-  override fun inject(app: App)
+  fun inject(app: App)
 }
-
-fun Application.createAppComponent() = DaggerAppComponent.builder()
-    .application(this)
-    .build()

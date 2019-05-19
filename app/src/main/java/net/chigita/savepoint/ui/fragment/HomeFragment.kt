@@ -5,24 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModel
-import dagger.Binds
-import dagger.Module
-import dagger.Provides
-import dagger.android.support.DaggerFragment
-import dagger.multibindings.IntoMap
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import net.chigita.savepoint.R
 import net.chigita.savepoint.databinding.FragmentHomeBinding
-import net.chigita.savepoint.di.ViewModelKey
+import net.chigita.savepoint.di.Injectable
 import net.chigita.savepoint.viewmodel.HomeViewModel
+import javax.inject.Inject
 
 /**
  * Created by chigichan24 on 2019-05-14.
  */
-class HomeFragment : DaggerFragment() {
+class HomeFragment : Fragment(), Injectable {
   private lateinit var binding: FragmentHomeBinding
-  //@Inject lateinit var viewModelFactory: ViewModelFactory
+  @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
+  lateinit var homeViewModel: HomeViewModel
 
   override fun onCreateView(
       inflater: LayoutInflater,
@@ -40,26 +38,8 @@ class HomeFragment : DaggerFragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    // val viewModel = ViewModelProviders.of(this, viewModelFactory).get(HomeViewModel::class.java)
-    //binding.viewModel = viewModel
+    homeViewModel = ViewModelProviders.of(this, viewModelFactory)
+        .get(HomeViewModel::class.java)
+    binding.viewModel = homeViewModel
   }
-}
-
-@Module
-abstract class HomeFragmentModule {
-  @Module
-  companion object {
-    @JvmStatic
-    @Provides
-    fun provideLifecycle(
-        homeFragment: HomeFragment
-    ): Lifecycle {
-      return homeFragment.viewLifecycleOwner.lifecycle
-    }
-  }
-
-  @Binds
-  @IntoMap
-  @ViewModelKey(HomeViewModel::class)
-  internal abstract fun bindMainViewModel(viewModel: HomeViewModel): ViewModel
 }

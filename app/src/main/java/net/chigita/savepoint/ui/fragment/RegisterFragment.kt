@@ -5,17 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import dagger.Module
-import dagger.Provides
-import dagger.android.support.DaggerFragment
+import androidx.fragment.app.Fragment
 import net.chigita.savepoint.R
 import net.chigita.savepoint.databinding.FragmentRegisterBinding
+import net.chigita.savepoint.di.Injectable
 
 /**
  * Created by chigichan24 on 2019-05-14.
  */
-class RegisterFragment : DaggerFragment() {
+class RegisterFragment : Fragment(), Injectable {
   private lateinit var binding: FragmentRegisterBinding
 
   override fun onCreateView(
@@ -30,19 +28,5 @@ class RegisterFragment : DaggerFragment() {
         false
     )
     return binding.root
-  }
-}
-
-@Module
-abstract class RegisterFragmentModule {
-  @Module
-  companion object {
-    @JvmStatic
-    @Provides
-    fun provideLifecycle(
-        registerFragment: RegisterFragment
-    ): Lifecycle {
-      return registerFragment.viewLifecycleOwner.lifecycle
-    }
   }
 }
