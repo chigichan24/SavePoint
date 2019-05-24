@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import net.chigita.savepoint.repository.ThingRepository
 import net.chigita.savepoint.vo.Thing
+import java.util.UUID
 import javax.inject.Inject
 
 /**
@@ -20,24 +21,31 @@ class HomeViewModel @Inject constructor(
 
   private val mutableThingsLiveData = MutableLiveData<List<Thing>>()
   val thingsLivaData: LiveData<List<Thing>>
-    get() = mutableThingsLiveData
+    get() {
+      loadThings()
+      return mutableThingsLiveData
+    }
   val things: List<Thing>?
     get() = mutableThingsLiveData.value
 
   fun clickFab() {
+
+  }
+
+  private fun loadThings() {
     viewModelScope.launch {
       try {
         val things = repository.loadthings()
         mutableThingsLiveData.value = things
         // TODO: Remove
-        /*
+        ///*
         val dummy: List<Thing> = listOf(
             Thing(UUID.randomUUID().toString(), "ピコ太郎"),
             Thing(UUID.randomUUID().toString(), "マイクロ太郎"),
             Thing(UUID.randomUUID().toString(), "ナノ太郎")
         )
         mutableThingsLiveData.value = dummy
-        */
+       // */
       } catch (e: Exception) {
         onError(app.applicationContext, e)
       }

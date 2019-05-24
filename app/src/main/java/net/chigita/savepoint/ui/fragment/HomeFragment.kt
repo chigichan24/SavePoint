@@ -15,8 +15,7 @@ import net.chigita.savepoint.R
 import net.chigita.savepoint.databinding.FragmentHomeBinding
 import net.chigita.savepoint.di.Injectable
 import net.chigita.savepoint.ui.adapter.ThingsSection
-import net.chigita.savepoint.util.nonNull
-import net.chigita.savepoint.util.observe
+import net.chigita.savepoint.util.changed
 import net.chigita.savepoint.viewmodel.HomeViewModel
 import javax.inject.Inject
 
@@ -50,13 +49,12 @@ class HomeFragment : Fragment(), Injectable {
     binding.viewModel = homeViewModel
 
     binding.fab.setOnClickListener {
-      homeViewModel.clickFab()
-      //navigateToRegister()
+      navigateToRegister()
     }
 
-    homeViewModel.thingsLivaData.nonNull().observe(viewLifecycleOwner) {
+    homeViewModel.thingsLivaData.changed(viewLifecycleOwner) {
       binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-        add(ThingsSection(homeViewModel.thingsLivaData, viewLifecycleOwner))
+        add(ThingsSection(it, viewLifecycleOwner))
       }
     }
   }

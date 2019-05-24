@@ -1,10 +1,8 @@
 package net.chigita.savepoint.ui.adapter
 
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
 import com.xwray.groupie.Group
 import com.xwray.groupie.Section
-import net.chigita.savepoint.util.changed
 import net.chigita.savepoint.vo.Thing
 
 /**
@@ -12,13 +10,11 @@ import net.chigita.savepoint.vo.Thing
  */
 
 class ThingsSection(
-    private val thingLiveData: LiveData<List<Thing>>,
+    private val things: List<Thing>,
     private val lifecycleOwner: LifecycleOwner
 ) : Section() {
   init {
-    thingLiveData.changed(lifecycleOwner){
-      reload(it)
-    }
+    reload(things)
   }
 
   fun reload(things: List<Thing>) {
