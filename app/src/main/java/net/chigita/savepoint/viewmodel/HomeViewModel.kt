@@ -29,6 +29,15 @@ class HomeViewModel @Inject constructor(
       try {
         val things = repository.loadthings()
         mutableThingsLiveData.value = things
+        // TODO: Remove
+        /*
+        val dummy: List<Thing> = listOf(
+            Thing(UUID.randomUUID().toString(), "ピコ太郎"),
+            Thing(UUID.randomUUID().toString(), "マイクロ太郎"),
+            Thing(UUID.randomUUID().toString(), "ナノ太郎")
+        )
+        mutableThingsLiveData.value = dummy
+        */
       } catch (e: Exception) {
         onError(app.applicationContext, e)
       }

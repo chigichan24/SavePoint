@@ -9,9 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
 import net.chigita.savepoint.R
 import net.chigita.savepoint.databinding.FragmentHomeBinding
 import net.chigita.savepoint.di.Injectable
+import net.chigita.savepoint.ui.adapter.ThingsSection
+import net.chigita.savepoint.util.nonNull
+import net.chigita.savepoint.util.observe
 import net.chigita.savepoint.viewmodel.HomeViewModel
 import javax.inject.Inject
 
@@ -39,12 +44,20 @@ class HomeFragment : Fragment(), Injectable {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+
     homeViewModel = ViewModelProviders.of(this, viewModelFactory)
         .get(HomeViewModel::class.java)
     binding.viewModel = homeViewModel
-    //TODO: refactor
+
     binding.fab.setOnClickListener {
-      navigateToRegister()
+      homeViewModel.clickFab()
+      //navigateToRegister()
+    }
+
+    homeViewModel.thingsLivaData.nonNull().observe(viewLifecycleOwner) {
+      binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
+        add(ThingsSection(homeViewModel.thingsLivaData, viewLifecycleOwner))
+      }
     }
   }
 
