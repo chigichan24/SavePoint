@@ -10,9 +10,17 @@ import javax.inject.Singleton
  */
 @Singleton
 class ThingRepository @Inject constructor(
-  private val thingDao: ThingDao
+    private val thingDao: ThingDao
 ) {
-    suspend fun loadthings(): List<Thing> {
-      return thingDao.findAll()
-    }
+  suspend fun load(): List<Thing> {
+    return thingDao.findAll()
+  }
+
+  suspend fun load(uuid: String): Thing? {
+    return thingDao.find(uuid)
+  }
+
+  suspend fun insert(thing: Thing) {
+    return thingDao.insert(thing)
+  }
 }

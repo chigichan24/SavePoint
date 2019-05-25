@@ -8,7 +8,7 @@
     <import type="java.util.List"/>
     <variable
       name="viewModel"
-      type="net.chigita.savepoint.viewmodel.HomeViewModel"
+      type="net.chigita.savepoint.viewmodel.ThingViewModel"
       />
   </data>
   <androidx.constraintlayout.widget.ConstraintLayout

@@ -19,11 +19,13 @@ interface ThingDao {
   @Update
   suspend fun update(thing: Thing)
 
+  @Query("SELECT * FROM thing WHERE uuid = :uuid")
+  suspend fun find(uuid: String): Thing?
+
   @Query("SELECT * FROM thing")
   suspend fun findAll(): List<Thing>
 
   @Transaction
   @Query("SELECT * FROM thing")
   suspend fun findThingAndAngles(): List<ThingAndAngles>
-
 }

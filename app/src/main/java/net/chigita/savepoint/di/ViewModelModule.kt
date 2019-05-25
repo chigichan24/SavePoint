@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import net.chigita.savepoint.viewmodel.HomeViewModel
+import net.chigita.savepoint.viewmodel.ThingViewModel
 
 /**
  * Created by chigichan24 on 2019-05-16.
@@ -17,6 +17,6 @@ abstract class ViewModelModule {
 
   @Binds
   @IntoMap
-  @ViewModelKey(HomeViewModel::class)
-  abstract fun bindHomeViewModel(viewModel: HomeViewModel): ViewModel
+  @ViewModelKey(ThingViewModel::class)
+  abstract fun bindHomeViewModel(viewModel: ThingViewModel): ViewModel
 }

@@ -16,7 +16,7 @@ import net.chigita.savepoint.databinding.FragmentHomeBinding
 import net.chigita.savepoint.di.Injectable
 import net.chigita.savepoint.ui.adapter.ThingsSection
 import net.chigita.savepoint.util.changed
-import net.chigita.savepoint.viewmodel.HomeViewModel
+import net.chigita.savepoint.viewmodel.ThingViewModel
 import javax.inject.Inject
 
 /**
@@ -25,7 +25,7 @@ import javax.inject.Inject
 class HomeFragment : Fragment(), Injectable {
   private lateinit var binding: FragmentHomeBinding
   @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
-  lateinit var homeViewModel: HomeViewModel
+  lateinit var thingViewModel: ThingViewModel
 
   override fun onCreateView(
       inflater: LayoutInflater,
@@ -44,15 +44,15 @@ class HomeFragment : Fragment(), Injectable {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    homeViewModel = ViewModelProviders.of(this, viewModelFactory)
-        .get(HomeViewModel::class.java)
-    binding.viewModel = homeViewModel
+    thingViewModel = ViewModelProviders.of(this, viewModelFactory)
+        .get(ThingViewModel::class.java)
+    binding.viewModel = thingViewModel
 
     binding.fab.setOnClickListener {
       navigateToRegister()
     }
 
-    homeViewModel.thingsLivaData.changed(viewLifecycleOwner) {
+    thingViewModel.thingsLivaData.changed(viewLifecycleOwner) {
       binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
         add(ThingsSection(it, viewLifecycleOwner))
       }

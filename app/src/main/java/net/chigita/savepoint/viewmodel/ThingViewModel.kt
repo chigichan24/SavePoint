@@ -8,13 +8,12 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import net.chigita.savepoint.repository.ThingRepository
 import net.chigita.savepoint.vo.Thing
-import java.util.UUID
 import javax.inject.Inject
 
 /**
  * Created by chigichan24 on 2019-05-15.
  */
-class HomeViewModel @Inject constructor(
+class ThingViewModel @Inject constructor(
     private val app: Application,
     private val repository: ThingRepository
 ) : AndroidViewModel(app) {
@@ -32,20 +31,22 @@ class HomeViewModel @Inject constructor(
 
   }
 
+  fun registerThing(name: String) {
+    viewModelScope.launch {
+      try {
+        val thing = Thing.new(name)
+        repository.insert(thing)
+      } catch (e: Exception) {
+        onError(app.applicationContext, e)
+      }
+    }
+  }
+
   private fun loadThings() {
     viewModelScope.launch {
       try {
-        val things = repository.loadthings()
+        val things = repository.load()
         mutableThingsLiveData.value = things
-        // TODO: Remove
-        ///*
-        val dummy: List<Thing> = listOf(
-            Thing(UUID.randomUUID().toString(), "ピコ太郎"),
-            Thing(UUID.randomUUID().toString(), "マイクロ太郎"),
-            Thing(UUID.randomUUID().toString(), "ナノ太郎")
-        )
-        mutableThingsLiveData.value = dummy
-       // */
       } catch (e: Exception) {
         onError(app.applicationContext, e)
       }
