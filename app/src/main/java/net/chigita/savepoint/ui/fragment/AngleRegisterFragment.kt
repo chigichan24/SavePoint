@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import net.chigita.savepoint.R
-import net.chigita.savepoint.databinding.FragmentRegisterBinding
+import net.chigita.savepoint.databinding.FragmentAngleRegisterBinding
 import net.chigita.savepoint.di.Injectable
 
 /**
- * Created by chigichan24 on 2019-05-14.
+ * Created by chigichan24 on 2019-05-25.
  */
-class RegisterFragment : Fragment(), Injectable {
-  private lateinit var binding: FragmentRegisterBinding
+class AngleRegisterFragment : Fragment(), Injectable {
+  private lateinit var binding: FragmentAngleRegisterBinding
 
   override fun onCreateView(
       inflater: LayoutInflater,
@@ -24,7 +23,7 @@ class RegisterFragment : Fragment(), Injectable {
   ): View? {
     binding = DataBindingUtil.inflate(
         inflater,
-        R.layout.fragment_register,
+        R.layout.fragment_angle_register,
         container,
         false
     )
@@ -33,13 +32,5 @@ class RegisterFragment : Fragment(), Injectable {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    binding.rootConstraint.setOnTouchListener { v, _ ->
-      v.requestFocus()
-    }
-    binding.fab.setOnClickListener {
-      navigateToAngleRegister()
-    }
   }
-
-  fun navigateToAngleRegister() = findNavController().navigate(R.id.action_register_to_angle_register)
 }

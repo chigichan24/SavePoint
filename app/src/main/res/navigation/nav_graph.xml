@@ -21,5 +21,17 @@
     android:name="net.chigita.savepoint.ui.fragment.RegisterFragment"
     android:label="@string/label_register"
     tools:layout="@layout/fragment_register"
+    >
+    <action
+      android:id="@+id/action_register_to_angle_register"
+      app:destination="@+id/navigation_angle_register"
+      />
+  </fragment>
+  <fragment
+    android:id="@+id/navigation_angle_register"
+    android:name="net.chigita.savepoint.ui.fragment.AngleRegisterFragment"
+    android:label="@string/label_angle_register"
+    tools:layout="@layout/fragment_angle_register"
     />
+
 </navigation>
