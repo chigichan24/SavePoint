@@ -2,6 +2,8 @@ package net.chigita.savepoint.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -16,6 +18,11 @@ import net.chigita.savepoint.di.Injectable
  */
 class RegisterFragment : Fragment(), Injectable {
   private lateinit var binding: FragmentRegisterBinding
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setHasOptionsMenu(true)
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater,
@@ -39,6 +46,10 @@ class RegisterFragment : Fragment(), Injectable {
     binding.fab.setOnClickListener {
       navigateToAngleRegister()
     }
+  }
+
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    inflater.inflate(R.menu.menu_fragment_register, menu)
   }
 
   fun navigateToAngleRegister() = findNavController().navigate(R.id.action_register_to_angle_register)
