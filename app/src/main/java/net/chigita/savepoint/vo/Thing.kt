@@ -13,6 +13,11 @@ data class Thing(
     val name: String
 ) {
   companion object {
-    fun new(name: String) = Thing(UUID.randomUUID().toString(), name)
+    fun new(name: String):Thing {
+      if (name.isEmpty()) {
+        throw IllegalStateException("cannot allow blank name")
+      }
+      return Thing(UUID.randomUUID().toString(), name)
+    }
   }
 }

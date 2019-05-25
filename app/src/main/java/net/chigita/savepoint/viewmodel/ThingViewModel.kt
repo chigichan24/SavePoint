@@ -27,10 +27,6 @@ class ThingViewModel @Inject constructor(
   val things: List<Thing>?
     get() = mutableThingsLiveData.value
 
-  fun clickFab() {
-
-  }
-
   fun registerThing(name: String) {
     viewModelScope.launch {
       try {

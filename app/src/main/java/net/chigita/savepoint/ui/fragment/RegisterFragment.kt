@@ -64,10 +64,13 @@ class RegisterFragment : Fragment(), Injectable {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     if (item.itemId == R.id.menu_completed) {
       thingViewModel.registerThing(binding.thingEditText.text.toString())
+      navigateToHome()
       return false
     }
     return true
   }
 
   fun navigateToAngleRegister() = findNavController().navigate(R.id.action_register_to_angle_register)
+
+  fun navigateToHome() = findNavController().popBackStack()
 }

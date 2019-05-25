@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
       android:id="@+id/thing_card_view"
       android:layout_width="match_parent"
-      android:layout_height="40dp"
+      android:layout_height="80dp"
       android:layout_margin="8dp"
       android:background="@color/cardview_dark_background"
       app:cardCornerRadius="8dp"
@@ -30,8 +30,20 @@
           android:text="hoge"
           android:textColor="@color/black"
           app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/setting"
           app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          />
+        <ImageView
+          android:id="@+id/setting"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="24dp"
+          android:clickable="true"
+          android:src="@drawable/ic_baseline_settings_20px"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toEndOf="@id/thing_text"
           app:layout_constraintTop_toTopOf="parent"
           />
       </androidx.constraintlayout.widget.ConstraintLayout>
