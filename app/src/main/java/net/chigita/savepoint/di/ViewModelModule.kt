@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import net.chigita.savepoint.viewmodel.AngleViewModel
 import net.chigita.savepoint.viewmodel.ThingViewModel
 
 /**
@@ -19,4 +20,9 @@ abstract class ViewModelModule {
   @IntoMap
   @ViewModelKey(ThingViewModel::class)
   abstract fun bindHomeViewModel(viewModel: ThingViewModel): ViewModel
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(AngleViewModel::class)
+  abstract fun bindAngleViewModel(viewModel: AngleViewModel): ViewModel
 }

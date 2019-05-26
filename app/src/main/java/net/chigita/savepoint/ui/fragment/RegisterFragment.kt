@@ -50,6 +50,7 @@ class RegisterFragment : Fragment(), Injectable {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
+    val args = RegisterFragmentArgs.fromBundle(arguments!!)
     binding.rootConstraint.setOnTouchListener { v, _ ->
       v.requestFocus()
     }
@@ -59,10 +60,11 @@ class RegisterFragment : Fragment(), Injectable {
       binding.thingEditText.setText(it.name)
     }
     binding.fab.setOnClickListener {
-      navigateToAngleRegister()
+      (args.uuid)?.let {
+        navigateToAngleRegister(it)
+      }
     }
-    val args = RegisterFragmentArgs.fromBundle(arguments!!)
-    args.uuid?.let {
+    (args.uuid)?.let {
       thingViewModel.loadThing(it)
     }
   }
@@ -82,8 +84,13 @@ class RegisterFragment : Fragment(), Injectable {
     return true
   }
 
-  fun navigateToAngleRegister() = findNavController().navigate(
-      R.id.action_register_to_angle_register)
+  fun navigateToAngleRegister(uuid: String) {
+    val bundle = AngleRegisterFragmentArgs.Builder()
+        .setThingUuid(uuid)
+        .build()
+        .toBundle()
+    findNavController().navigate(R.id.action_register_to_angle_register, bundle)
+  }
 
   fun navigateToHome() = findNavController().popBackStack()
 }
