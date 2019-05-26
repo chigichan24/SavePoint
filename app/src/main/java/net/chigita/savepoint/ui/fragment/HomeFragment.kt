@@ -17,6 +17,7 @@ import net.chigita.savepoint.di.Injectable
 import net.chigita.savepoint.ui.adapter.ThingsSection
 import net.chigita.savepoint.util.changed
 import net.chigita.savepoint.viewmodel.ThingViewModel
+import net.chigita.savepoint.vo.Thing
 import javax.inject.Inject
 
 /**
@@ -54,10 +55,20 @@ class HomeFragment : Fragment(), Injectable {
 
     thingViewModel.thingsLivaData.changed(viewLifecycleOwner) {
       binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-        add(ThingsSection(it, viewLifecycleOwner))
+        add(ThingsSection(it, viewLifecycleOwner) { thing ->
+          navigateToEdit(thing)
+        })
       }
     }
   }
 
   fun navigateToRegister() = findNavController().navigate(R.id.action_main_to_register)
+
+  fun navigateToEdit(thing: Thing) {
+    val bundle = RegisterFragmentArgs.Builder()
+        .setUuid(thing.uuid)
+        .build()
+        .toBundle()
+    findNavController().navigate(R.id.action_main_to_register, bundle)
+  }
 }

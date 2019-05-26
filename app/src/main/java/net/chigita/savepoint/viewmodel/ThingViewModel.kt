@@ -27,11 +27,30 @@ class ThingViewModel @Inject constructor(
   val things: List<Thing>?
     get() = mutableThingsLiveData.value
 
+  private val mutableThingLiveData = MutableLiveData<Thing>()
+  val thingLiveData: LiveData<Thing>
+      get() = mutableThingLiveData
+  val thing: Thing?
+    get() = mutableThingLiveData.value
+
   fun registerThing(name: String) {
     viewModelScope.launch {
       try {
         val thing = Thing.new(name)
         repository.insert(thing)
+      } catch (e: Exception) {
+        onError(app.applicationContext, e)
+      }
+    }
+  }
+
+  fun loadThing(uuid: String){
+    viewModelScope.launch {
+      try{
+        val thing = repository.load(uuid)
+        thing?.let {
+          mutableThingLiveData.value = it
+        }
       } catch (e: Exception) {
         onError(app.applicationContext, e)
       }

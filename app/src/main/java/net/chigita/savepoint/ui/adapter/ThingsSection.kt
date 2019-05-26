@@ -11,8 +11,20 @@ import net.chigita.savepoint.vo.Thing
 
 class ThingsSection(
     private val things: List<Thing>,
-    private val lifecycleOwner: LifecycleOwner
+    private val lifecycleOwner: LifecycleOwner,
+    private val callBack: (Thing) -> Unit
 ) : Section() {
+
+  private val onThingItemClickListener = object : OnThingItemClickListener {
+    override fun onClick(thing: Thing) {
+
+    }
+
+    override fun onClickEdit(thing: Thing) {
+      callBack(thing)
+    }
+  }
+
   init {
     reload(things)
   }
@@ -20,7 +32,7 @@ class ThingsSection(
   fun reload(things: List<Thing>) {
     val items = mutableListOf<Group>()
     things.forEach {
-      items.add(ThingsItem(it))
+      items.add(ThingsItem(it, onThingItemClickListener))
     }
     update(items)
   }

@@ -15,6 +15,7 @@
       android:id="@+id/action_main_to_register"
       app:destination="@+id/navigation_register"
       />
+
   </fragment>
   <fragment
     android:id="@+id/navigation_register"
@@ -25,6 +26,12 @@
     <action
       android:id="@+id/action_register_to_angle_register"
       app:destination="@+id/navigation_angle_register"
+      />
+    <argument
+      android:name="uuid"
+      android:defaultValue="@null"
+      app:argType="string"
+      app:nullable="true"
       />
   </fragment>
   <fragment
