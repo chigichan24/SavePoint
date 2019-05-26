@@ -13,10 +13,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.ViewHolder
 import net.chigita.savepoint.R
 import net.chigita.savepoint.databinding.FragmentRegisterBinding
 import net.chigita.savepoint.di.Injectable
+import net.chigita.savepoint.ui.adapter.AnglesSection
 import net.chigita.savepoint.util.changed
+import net.chigita.savepoint.viewmodel.AngleViewModel
 import net.chigita.savepoint.viewmodel.ThingViewModel
 import javax.inject.Inject
 
@@ -27,6 +31,7 @@ class RegisterFragment : Fragment(), Injectable {
   private lateinit var binding: FragmentRegisterBinding
   @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
   lateinit var thingViewModel: ThingViewModel
+  lateinit var angleViewModel: AngleViewModel
   private val args by navArgs<RegisterFragmentArgs>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +61,15 @@ class RegisterFragment : Fragment(), Injectable {
     }
     thingViewModel = ViewModelProviders.of(this, viewModelFactory)
         .get(ThingViewModel::class.java)
+    angleViewModel = ViewModelProviders.of(this, viewModelFactory)
+        .get(AngleViewModel::class.java)
     thingViewModel.thingLiveData.changed(viewLifecycleOwner) {
       binding.thingEditText.setText(it.name)
+    }
+    angleViewModel.registedAnglesLiveData.changed(viewLifecycleOwner) {
+      binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
+        add(AnglesSection(it, viewLifecycleOwner))
+      }
     }
     binding.fab.setOnClickListener {
       (args.uuid)?.let {
@@ -66,6 +78,7 @@ class RegisterFragment : Fragment(), Injectable {
     }
     (args.uuid)?.let {
       thingViewModel.loadThing(it)
+      angleViewModel.loadRegistedAngles(it)
     }
   }
 

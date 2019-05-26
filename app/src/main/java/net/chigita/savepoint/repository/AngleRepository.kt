@@ -15,4 +15,8 @@ class AngleRepository @Inject constructor(
   suspend fun insert(angle: Angle) {
     return angleDao.insert(angle)
   }
+
+  suspend fun load(thingUuid: String): List<Angle> {
+    return angleDao.find(thingUuid)
+  }
 }

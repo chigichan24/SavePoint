@@ -14,5 +14,5 @@ class ThingAndAngles {
   lateinit var thing: Thing
 
   @Relation(parentColumn = "uuid", entityColumn = "thingUuid")
-  lateinit var things: List<Angle>
+  lateinit var angles: List<Angle>
 }

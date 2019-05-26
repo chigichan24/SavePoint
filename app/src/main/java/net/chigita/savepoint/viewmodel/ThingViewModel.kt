@@ -67,4 +67,5 @@ class ThingViewModel @Inject constructor(
       }
     }
   }
+
 }
