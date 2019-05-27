@@ -2,6 +2,9 @@ package net.chigita.savepoint.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -27,6 +30,11 @@ class HomeFragment : Fragment(), Injectable {
   private lateinit var binding: FragmentHomeBinding
   @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
   lateinit var thingViewModel: ThingViewModel
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setHasOptionsMenu(true)
+  }
 
   override fun onCreateView(
       inflater: LayoutInflater,
@@ -67,6 +75,18 @@ class HomeFragment : Fragment(), Injectable {
     }
   }
 
+  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    inflater.inflate(R.menu.menu_fragment_home, menu)
+  }
+
+  override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    if (item.itemId == R.id.menu_info) {
+      navigateToLicense()
+      return false
+    }
+    return true
+  }
+
   fun navigateToRegister() = findNavController().navigate(R.id.action_main_to_register)
 
   fun navigateToEdit(thing: Thing) {
@@ -84,4 +104,6 @@ class HomeFragment : Fragment(), Injectable {
         .toBundle()
     findNavController().navigate(R.id.action_main_to_set_up_angle, bundle)
   }
+
+  fun navigateToLicense() = findNavController().navigate(R.id.action_main_to_license)
 }

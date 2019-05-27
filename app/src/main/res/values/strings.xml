@@ -12,10 +12,12 @@
     <string name="y_axis">y軸周り</string>
     <string name="slash">/</string>
     <string name="dash">-</string>
+    <string name="license">ライセンス情報</string>
     <!--navigation-->
     <string name="label_home">home</string>
     <string name="label_register">register</string>
     <string name="label_angle_register">angle_register</string>
     <string name="label_angle_set_up">angle_set_up</string>
     <string name="label_angle_balance">angle_balance</string>
+    <string name="label_license">license</string>
 </resources>

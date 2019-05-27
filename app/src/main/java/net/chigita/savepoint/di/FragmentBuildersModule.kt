@@ -6,6 +6,7 @@ import net.chigita.savepoint.ui.fragment.AngleBalanceFragment
 import net.chigita.savepoint.ui.fragment.AngleRegisterFragment
 import net.chigita.savepoint.ui.fragment.AngleSetUpFragment
 import net.chigita.savepoint.ui.fragment.HomeFragment
+import net.chigita.savepoint.ui.fragment.LicenseFragment
 import net.chigita.savepoint.ui.fragment.RegisterFragment
 
 /**
@@ -27,4 +28,7 @@ abstract class FragmentBuildersModule {
 
   @ContributesAndroidInjector
   abstract fun contriuteAngleBalanceFragment(): AngleBalanceFragment
+
+  @ContributesAndroidInjector
+  abstract fun contribbuteLicenseFragment(): LicenseFragment
 }
