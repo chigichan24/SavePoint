@@ -17,3 +17,10 @@ TopPage | MeasurePage | GoniometerPage
 ## Architecutre
 - inspired from [google-sample](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample)
 - Use MVVM pattern with dagger2
+
+### Used JetPack libs
+- Room
+- LiveData
+- Navigation
+- Databinding
+- ViewModel
