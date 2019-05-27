@@ -141,6 +141,6 @@ class AngleRegisterFragment : Fragment(), Injectable, SensorEventListener {
   }
 
   companion object {
-    const val MATRIX_SIZE = 9
+    private const val MATRIX_SIZE = 3 * 3
   }
 }

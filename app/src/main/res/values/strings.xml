@@ -11,6 +11,7 @@
     <string name="x_axis">x軸周り</string>
     <string name="y_axis">y軸周り</string>
     <string name="slash">/</string>
+    <string name="dash">-</string>
     <!--navigation-->
     <string name="label_home">home</string>
     <string name="label_register">register</string>
