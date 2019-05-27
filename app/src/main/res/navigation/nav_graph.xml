@@ -61,6 +61,10 @@
     android:label="@string/label_angle_set_up"
     tools:layout="@layout/fragment_set_up_angle"
     >
+    <action
+      android:id="@+id/action_angle_set_up_to_home"
+      app:destination="@id/navigation_main"
+      />
     <argument
       android:name="thing_uuid"
       android:defaultValue=" "
