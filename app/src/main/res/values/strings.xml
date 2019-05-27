@@ -12,4 +12,5 @@
     <string name="label_home">home</string>
     <string name="label_register">register</string>
     <string name="label_angle_register">angle_register</string>
+    <string name="label_angle_set_up">angle_set_up</string>
 </resources>

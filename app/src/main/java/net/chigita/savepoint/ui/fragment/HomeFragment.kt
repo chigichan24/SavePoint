@@ -55,9 +55,14 @@ class HomeFragment : Fragment(), Injectable {
 
     thingViewModel.thingsLivaData.changed(viewLifecycleOwner) {
       binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-        add(ThingsSection(it, viewLifecycleOwner) { thing ->
-          navigateToEdit(thing)
-        })
+        add(
+            ThingsSection(
+                it,
+                viewLifecycleOwner,
+                { thing -> navigateToSetUp(thing) },
+                { thing -> navigateToEdit(thing) }
+            )
+        )
       }
     }
   }
@@ -70,5 +75,13 @@ class HomeFragment : Fragment(), Injectable {
         .build()
         .toBundle()
     findNavController().navigate(R.id.action_main_to_register, bundle)
+  }
+
+  fun navigateToSetUp(thing: Thing) {
+    val bundle = AngleSetUpFragmentArgs.Builder()
+        .setThingUuid(thing.uuid)
+        .build()
+        .toBundle()
+    findNavController().navigate(R.id.action_main_to_set_up_angle, bundle)
   }
 }

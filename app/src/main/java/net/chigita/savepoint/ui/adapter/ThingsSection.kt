@@ -12,16 +12,17 @@ import net.chigita.savepoint.vo.Thing
 class ThingsSection(
     private val things: List<Thing>,
     private val lifecycleOwner: LifecycleOwner,
-    private val callBack: (Thing) -> Unit
+    private val onItemClick: (Thing) -> Unit,
+    private val onEdit: (Thing) -> Unit
 ) : Section() {
 
   private val onThingItemClickListener = object : OnThingItemClickListener {
     override fun onClick(thing: Thing) {
-
+      onItemClick(thing)
     }
 
     override fun onClickEdit(thing: Thing) {
-      callBack(thing)
+      onEdit(thing)
     }
   }
 

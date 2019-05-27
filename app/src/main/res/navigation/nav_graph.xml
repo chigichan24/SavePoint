@@ -15,6 +15,10 @@
       android:id="@+id/action_main_to_register"
       app:destination="@+id/navigation_register"
       />
+    <action
+      android:id="@+id/action_main_to_set_up_angle"
+      app:destination="@id/navigation_angle_set_up"
+      />
 
   </fragment>
   <fragment
@@ -44,6 +48,19 @@
       android:id="@+id/action_angle_register_to_register"
       app:destination="@id/navigation_register"
       />
+    <argument
+      android:name="thing_uuid"
+      android:defaultValue=" "
+      app:argType="string"
+      app:nullable="false"
+      />
+  </fragment>
+  <fragment
+    android:id="@+id/navigation_angle_set_up"
+    android:name="net.chigita.savepoint.ui.fragment.AngleSetUpFragment"
+    android:label="@string/label_angle_set_up"
+    tools:layout="@layout/fragment_set_up_angle"
+    >
     <argument
       android:name="thing_uuid"
       android:defaultValue=" "

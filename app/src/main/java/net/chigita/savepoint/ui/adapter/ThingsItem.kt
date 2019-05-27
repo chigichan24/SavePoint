@@ -21,6 +21,9 @@ class ThingsItem(
     viewBinding.setting.setOnClickListener {
       onThingItemClickListener.onClickEdit(thing)
     }
+    viewBinding.thingCardView.setOnClickListener {
+      onThingItemClickListener.onClick(thing)
+    }
   }
 
   override fun providerEqualableContents(): Array<*> = arrayOf(thing)
