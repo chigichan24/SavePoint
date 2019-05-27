@@ -8,9 +8,13 @@
     <string name="angle_description_name_hint_text">登録したい部位の詳細．端末の設置の仕方などを書く．</string>
     <string name="complete">完了</string>
     <string name="measure_angle">角度計測</string>
+    <string name="x_axis">x軸周り</string>
+    <string name="y_axis">y軸周り</string>
+    <string name="slash">/</string>
     <!--navigation-->
     <string name="label_home">home</string>
     <string name="label_register">register</string>
     <string name="label_angle_register">angle_register</string>
     <string name="label_angle_set_up">angle_set_up</string>
+    <string name="label_angle_balance">angle_balance</string>
 </resources>

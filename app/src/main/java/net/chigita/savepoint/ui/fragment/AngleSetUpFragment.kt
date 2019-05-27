@@ -58,7 +58,7 @@ class AngleSetUpFragment : Fragment(), Injectable {
     }
     angleViewModel.registedAnglesLiveData.changed(viewLifecycleOwner) {
       binding.recyclerView.adapter = GroupAdapter<ViewHolder>().apply {
-        add(AnglesSection(it, viewLifecycleOwner) {navigateToHome(it)})
+        add(AnglesSection(it, viewLifecycleOwner) { navigateToBalance(it) })
       }
     }
     args.thingUuid.apply {
@@ -67,5 +67,11 @@ class AngleSetUpFragment : Fragment(), Injectable {
     }
   }
 
-  fun navigateToHome(angle: Angle) = findNavController().navigate(R.id.action_angle_set_up_to_home)
+  fun navigateToBalance(angle: Angle) {
+    val bundle = AngleBalanceFragmentArgs.Builder()
+        .setAngleUuid(angle.uuid)
+        .build()
+        .toBundle()
+    findNavController().navigate(R.id.action_angle_set_up_to_angle_balance, bundle)
+  }
 }

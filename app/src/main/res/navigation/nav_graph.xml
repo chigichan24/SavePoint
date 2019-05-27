@@ -62,11 +62,24 @@
     tools:layout="@layout/fragment_set_up_angle"
     >
     <action
-      android:id="@+id/action_angle_set_up_to_home"
-      app:destination="@id/navigation_main"
+      android:id="@+id/action_angle_set_up_to_angle_balance"
+      app:destination="@id/navigation_angle_balance"
       />
     <argument
       android:name="thing_uuid"
+      android:defaultValue=" "
+      app:argType="string"
+      app:nullable="false"
+      />
+  </fragment>
+  <fragment
+    android:id="@+id/navigation_angle_balance"
+    android:name="net.chigita.savepoint.ui.fragment.AngleBalanceFragment"
+    android:label="@string/label_angle_balance"
+    tools:layout="@layout/fragment_angle_balance"
+    >
+    <argument
+      android:name="angle_uuid"
       android:defaultValue=" "
       app:argType="string"
       app:nullable="false"

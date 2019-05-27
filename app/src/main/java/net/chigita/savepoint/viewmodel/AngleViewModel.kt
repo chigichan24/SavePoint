@@ -24,6 +24,12 @@ class AngleViewModel @Inject constructor(
   val registerdAngles: List<Angle>
     get() = mutableRegisterdAnglesLiveData.value ?: emptyList()
 
+  private val mutableAngleLiveData = MutableLiveData<Angle>()
+  val angleLiveData: LiveData<Angle>
+    get() = mutableAngleLiveData
+  val angle: Angle?
+    get() = mutableAngleLiveData.value
+
   fun registerAngle(
       thingUuid: String,
       name: String,
@@ -49,11 +55,22 @@ class AngleViewModel @Inject constructor(
     }
   }
 
+  fun loadAngle(uuid: String) {
+    viewModelScope.launch {
+      try {
+        val angle = repository.load(uuid)
+        mutableAngleLiveData.value = angle
+      } catch (e: Exception) {
+        onError(app.applicationContext, e)
+      }
+    }
+  }
+
 
   fun loadRegistedAngles(thingUuid: String) {
     viewModelScope.launch {
       try {
-        val angles = repository.load(thingUuid)
+        val angles = repository.loadAngles(thingUuid)
         mutableRegisterdAnglesLiveData.value = angles
       } catch (e: Exception){
         onError(app.applicationContext, e)

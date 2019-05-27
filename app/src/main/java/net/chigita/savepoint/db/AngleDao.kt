@@ -19,5 +19,8 @@ interface AngleDao {
   suspend fun update(angle: Angle)
 
   @Query("SELECT * FROM angle WHERE thingUuid = :thingUuid")
-  suspend fun find(thingUuid: String): List<Angle>
+  suspend fun findAngles(thingUuid: String): List<Angle>
+
+  @Query("SELECT * FROM angle WHERE uuid = :uuid")
+  suspend fun find(uuid: String): Angle
 }

@@ -16,7 +16,11 @@ class AngleRepository @Inject constructor(
     return angleDao.insert(angle)
   }
 
-  suspend fun load(thingUuid: String): List<Angle> {
-    return angleDao.find(thingUuid)
+  suspend fun load(uuid: String): Angle {
+    return angleDao.find(uuid)
+  }
+
+  suspend fun loadAngles(thingUuid: String): List<Angle> {
+    return angleDao.findAngles(thingUuid)
   }
 }

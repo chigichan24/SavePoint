@@ -2,6 +2,7 @@ package net.chigita.savepoint.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import net.chigita.savepoint.ui.fragment.AngleBalanceFragment
 import net.chigita.savepoint.ui.fragment.AngleRegisterFragment
 import net.chigita.savepoint.ui.fragment.AngleSetUpFragment
 import net.chigita.savepoint.ui.fragment.HomeFragment
@@ -23,4 +24,7 @@ abstract class FragmentBuildersModule {
 
   @ContributesAndroidInjector
   abstract fun contriubteSetUpAngleFragment(): AngleSetUpFragment
+
+  @ContributesAndroidInjector
+  abstract fun contriuteAngleBalanceFragment(): AngleBalanceFragment
 }
