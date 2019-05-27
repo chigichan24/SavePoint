@@ -55,6 +55,10 @@ class AngleRegisterFragment : Fragment(), Injectable {
     }
     angleViewModel = ViewModelProviders.of(this, viewModelFactory)
         .get(AngleViewModel::class.java)
+    binding.measureButton.setOnClickListener {
+      binding.lottieAnim.visibility = View.VISIBLE
+      binding.lottieAnim.playAnimation()
+    }
   }
 
   override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -7,6 +7,7 @@
     <string name="description">説明・詳細</string>
     <string name="angle_description_name_hint_text">登録したい部位の詳細．端末の設置の仕方などを書く．</string>
     <string name="complete">完了</string>
+    <string name="measure_angle">角度計測</string>
     <!--navigation-->
     <string name="label_home">home</string>
     <string name="label_register">register</string>
