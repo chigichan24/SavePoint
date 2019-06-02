@@ -15,7 +15,7 @@ TopPage | MeasurePage | GoniometerPage
 - run `./gradlew generateLicensePage` before build app
 
 ## Architecutre
-- inspired from [google-sample](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample)
+- inspired by [google-sample](https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample)
 - Use MVVM pattern with dagger2
 
 <img src="https://user-images.githubusercontent.com/7840108/58451524-ba078d00-814e-11e9-81cd-cde8f25a19f2.png" width="700"/>
